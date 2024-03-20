@@ -12,7 +12,7 @@
   resolved "https://registry.yarnpkg.com/@alloc/quick-lru/-/quick-lru-5.2.0.tgz#7bf68b20c0a350f936915fcae06f58e32007ce30"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
-"@babel/runtime@^7.23.2":
+"@babel/runtime@^7.23.2", "@babel/runtime@^7.24.0":
   version "7.24.1"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.24.1.tgz#431f9a794d173b53720e69a6464abc6f0e2a5c57"
   integrity sha512-+BIznRzyqBf+2wCTxcKE3wDjfGeCoVE61KSHGpkzqrLi8qxqFwBeUFyId2cxkTmm55fzDGnm0+yCxaxygrLUnQ==
@@ -196,6 +196,42 @@
   version "0.11.0"
   resolved "https://registry.yarnpkg.com/@pkgjs/parseargs/-/parseargs-0.11.0.tgz#a77ea742fab25775145434eb1d2328cf5013ac33"
   integrity sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==
+
+"@prisma/debug@5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2":
+  version "5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2"
+  resolved "https://registry.yarnpkg.com/@prisma/debug/-/debug-5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2.tgz#def3b169d142fc2ea28fd319191e1dc59f6cedb8"
+  integrity sha512-wABZfp1ae0/rr8PE8FcOw1HldOG6A5hPKsbVe5X9dMDIkEJzmV+Mah+AkNDEzK0gg2CAih85qsgfHcxdguGgfA==
+
+"@prisma/engines-version@5.12.0-6.integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d":
+  version "5.12.0-6.integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d"
+  resolved "https://registry.yarnpkg.com/@prisma/engines-version/-/engines-version-5.12.0-6.integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.tgz#3cb3d5961152f9d36f92b14c5a33f38ce3d57894"
+  integrity sha512-L+00GUFDspJHf3Aum04F/VDMrA4gGf42QO8Hk18HDCvmkTBYsqi1+r5mO0VE5CIk/OAvMq1UG/X7j32/cyPJcA==
+
+"@prisma/engines@5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2":
+  version "5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2"
+  resolved "https://registry.yarnpkg.com/@prisma/engines/-/engines-5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2.tgz#bf6acbbe955ee06e0ac68743f7d75ed1123419f1"
+  integrity sha512-dg2aBVl5flcZL1IbSsDmorNAcPz1DZeH3GHS3SMWx6ust3HPybgnhRLwe8bqzgLsFsOVEJWYrncu+PzOg88L3Q==
+  dependencies:
+    "@prisma/debug" "5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2"
+    "@prisma/engines-version" "5.12.0-6.integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d"
+    "@prisma/fetch-engine" "5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2"
+    "@prisma/get-platform" "5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2"
+
+"@prisma/fetch-engine@5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2":
+  version "5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2"
+  resolved "https://registry.yarnpkg.com/@prisma/fetch-engine/-/fetch-engine-5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2.tgz#01b66655095acca1a2a7db9e55f129aec16fa70f"
+  integrity sha512-h23RAjhd74yw3jYWKakFdUh0MtTQnMqyCU3qVWI9hAzUWoPrUfdXETpQwvE8SAYaLtsb663cR8f5ARZD44hZ8Q==
+  dependencies:
+    "@prisma/debug" "5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2"
+    "@prisma/engines-version" "5.12.0-6.integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d"
+    "@prisma/get-platform" "5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2"
+
+"@prisma/get-platform@5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2":
+  version "5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2"
+  resolved "https://registry.yarnpkg.com/@prisma/get-platform/-/get-platform-5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2.tgz#f2fd453b1aee348ed629c10cade600f915a9d02a"
+  integrity sha512-nZjcYEBtUt8vimqsgVtK8RFUSOrOJ7PISbZqIWJAldPZMNcIwgF1wb8Li7xOgf50zHAlDFxN7/KOTI46yoYYHQ==
+  dependencies:
+    "@prisma/debug" "5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2"
 
 "@rushstack/eslint-patch@^1.3.3":
   version "1.8.0"
@@ -607,10 +643,27 @@ chokidar@^3.5.3:
   optionalDependencies:
     fsevents "~2.3.2"
 
+class-variance-authority@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/class-variance-authority/-/class-variance-authority-0.7.0.tgz#1c3134d634d80271b1837452b06d821915954522"
+  integrity sha512-jFI8IQw4hczaL4ALINxqLEXQbWcNjoSkloa4IaufXCJr6QawJyw7tuRysRsrE8w2p/4gGaxKIt/hX3qz/IbD1A==
+  dependencies:
+    clsx "2.0.0"
+
 client-only@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/client-only/-/client-only-0.0.1.tgz#38bba5d403c41ab150bff64a95c85013cf73bca1"
   integrity sha512-IV3Ou0jSMzZrd3pZ48nLkT9DA7Ag1pnPzaiQhpW7c3RbcqqzvzzVu+L8gfqMp/8IM2MQtSiqaCxrrcfu8I8rMA==
+
+clsx@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/clsx/-/clsx-2.0.0.tgz#12658f3fd98fafe62075595a5c30e43d18f3d00b"
+  integrity sha512-rQ1+kcj+ttHG0MKVGBUXwayCCF1oh39BF5COIpRzuCEv8Mwjv0XucrI2ExNTOn9IlLifGClWQcU9BrZORvtw6Q==
+
+clsx@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/clsx/-/clsx-2.1.0.tgz#e851283bcb5c80ee7608db18487433f7b23f77cb"
+  integrity sha512-m3iNNWpd9rl3jvvcBnu70ylMdrXt8Vlq4HYadnU5fwcOtvkSQWPmj7amUcDT2qYI7risszBjI5AUIUox9D16pg==
 
 color-convert@^2.0.1:
   version "2.0.1"
@@ -1808,6 +1861,11 @@ lru-cache@^6.0.0:
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-10.2.0.tgz#0bd445ca57363465900f4d1f9bd8db343a4d95c3"
   integrity sha512-2bIM8x+VAf6JT4bKAljS1qUWgMsqZRPGJS6FSahIMPVvctcNhyVp7AJu7quxOW9jwkryBReKZY5tY5JYv2n/7Q==
 
+lucide-react@^0.359.0:
+  version "0.359.0"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.359.0.tgz#1e0efb4cc06f666c91e23b07a1353f64359a8621"
+  integrity sha512-bxVL+rM/wacjpT0BKShA6r5IIKb6LCRg+ltFG9pnnIwaRX8kK3hq8v5JwMpT7RC6XeqB5cSaaV6GapPWWmtliw==
+
 merge2@^1.3.0, merge2@^1.4.1:
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.4.1.tgz#4368892f885e907455a6fd7dc55c0c9d404990ae"
@@ -2152,6 +2210,13 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
+prisma@^5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2:
+  version "5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2"
+  resolved "https://registry.yarnpkg.com/prisma/-/prisma-5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2.tgz#dbb1c22768b279e50d0a9f58f06a71d8a7f97822"
+  integrity sha512-hAmKs8fpx1UGAzO4jzRpASBLErtCRha+fe0n1N8vAvi8VqJj63Cc22Z8kaygs+YTA6xO7IylIfVHiHC9X1zm0Q==
+  dependencies:
+    "@prisma/engines" "5.12.0-integration-engines-5-12-0-6-integration-d1-tables-2ba47bbf74c518b0a809d271a5265882545f6d7d.2"
+
 prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
@@ -2383,6 +2448,7 @@ streamsearch@^1.1.0:
   integrity sha512-Mcc5wHehp9aXz1ax6bZUyY5afg9u2rv5cqQI3mRrYkGC8rW2hM02jWuwjtL++LS5qinSyhj2QfLyNsuc+VsExg==
 
 "string-width-cjs@npm:string-width@^4.2.0", string-width@^4.1.0:
+  name string-width-cjs
   version "4.2.3"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-4.2.3.tgz#269c7117d27b05ad2e536830a8ec895ef9c6d010"
   integrity sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==
@@ -2447,6 +2513,7 @@ string.prototype.trimstart@^1.0.7:
     es-abstract "^1.22.1"
 
 "strip-ansi-cjs@npm:strip-ansi@^6.0.1", strip-ansi@^6.0.0, strip-ansi@^6.0.1:
+  name strip-ansi-cjs
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-6.0.1.tgz#9e26c63d30f53443e9489495b2105d37b67a85d9"
   integrity sha512-Y38VPSHcqkFrCpFnQ9vuSXmquuv5oXOKpGeT6aGrr3o3Gc9AlVa6JBfUSOCnbxGGZF+/0ooI7KrPuUSztUdU5A==
@@ -2501,6 +2568,18 @@ supports-preserve-symlinks-flag@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
+
+tailwind-merge@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/tailwind-merge/-/tailwind-merge-2.2.2.tgz#87341e7604f0e20499939e152cd2841f41f7a3df"
+  integrity sha512-tWANXsnmJzgw6mQ07nE3aCDkCK4QdT3ThPMCzawoYA2Pws7vSTCvz3Vrjg61jVUGfFZPJzxEP+NimbcW+EdaDw==
+  dependencies:
+    "@babel/runtime" "^7.24.0"
+
+tailwindcss-animate@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/tailwindcss-animate/-/tailwindcss-animate-1.0.7.tgz#318b692c4c42676cc9e67b19b78775742388bef4"
+  integrity sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==
 
 tailwindcss@^3.3.0:
   version "3.4.1"
