@@ -7,54 +7,13 @@ import {
   FaWhatsapp,
   FaX,
 } from "react-icons/fa6";
-import { Button } from "./ui/button";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
 
 interface FooterProps {}
 
 export function Footer(props: FooterProps) {
   return (
-    <footer className="bg-black text-white  scroll-mt-10" id="contact">
-      <div className="flex flex-col  items-center py-20 max-w-7xl mx-auto gap-4 px-4">
-        <p className="text-3xl font-bold w-full flex-1 text-center mb-4">
-          {"Let's talk about your project?"}
-        </p>
-        <form className="grid grid-cols-4  dark gap-4 w-full">
-          <Input
-            placeholder="Insert your name"
-            type="text"
-            className=" bg-black border-white h-16 text-xl col-span-4"
-          />
-          <Input
-            placeholder="Insert your e-mail"
-            type="email"
-            className=" bg-black border-white h-16 text-xl col-span-4"
-          />
-          <Input
-            placeholder="(xx) xxxxx-xxxx"
-            type="tel"
-            className=" bg-black border-white h-16 text-xl  col-span-4 md:col-span-2"
-            maxLength={15}
-          />
-          <Input
-            placeholder="Subject"
-            type="text"
-            className=" bg-black border-white h-16 text-xl col-span-4 md:col-span-2"
-          />
-          <Textarea
-            placeholder="Type your message here."
-            className=" bg-black border-white h-48 text-xl  col-span-4"
-            rows={5}
-          />
-          <div className="grid grid-cols-subgrid h-16 text-xl col-span-4">
-            <Button className=" h-16 text-xl col-span-4 sm:col-span-2 sm:col-end-6 auto-cols-auto">
-              Send
-            </Button>
-          </div>
-        </form>
-      </div>
-      <div className="bg-white text-black px-4">
+    <footer className="bg-foreground text-muted  scroll-mt-10" id="contact">
+      <div className="bg-background text-secondary-foreground px-4">
         <div className="grid grid-flow-row auto-rows-max sm:grid-flow-col sm:auto-cols-max justify-center  sm:justify-between items-center py-4 max-w-7xl md:mx-auto ">
           <p className="text-center mt-4 md:self-end">
             © {new Date().getFullYear()} AE Digi Solutions. All rights reserved

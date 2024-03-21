@@ -7,7 +7,7 @@ export const MENU = [
   {
     id: 2,
     title: "About",
-    url: "/about",
+    url: "#about",
   },
   {
     id: 3,
@@ -16,6 +16,11 @@ export const MENU = [
   },
   {
     id: 4,
+    title: "Partner Program",
+    url: '/partner-program'
+  },
+  {
+    id: 5,
     title: "Contact",
     url: "#contact",
   },

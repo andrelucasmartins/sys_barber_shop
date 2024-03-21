@@ -10,12 +10,14 @@ import {
 import { MENU } from "@/data/menu";
 
 import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa6";
-import ThemeSwitch from "./theme-switch";
 import { Button } from "./ui/button";
+
+const ThemeSwitch = dynamic(() => import("./theme-switch"), { ssr: false });
 
 interface HeaderProps {}
 
@@ -40,12 +42,13 @@ export const Header = (props: HeaderProps) => {
   }, []);
   return (
     <header
-      className={cn("bg-white text-gray-600 w-full z-40 ", {
+      className={cn("bg-transparent text-gray-600 w-full z-40 ", {
         "fixed  bg-black/90 text-gray-50 drop-shadow-lg": headerState,
       })}
     >
       <div className="container max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         <h1 className="text-3xl font-bold text-primary">Sys Barber Shop</h1>
+        <div className="flex flex-row gap-4 justify-between items-center">
         <nav className="space-x-4 hidden lg:block">
           {MENU.map((item) => (
             <Link
@@ -61,7 +64,6 @@ export const Header = (props: HeaderProps) => {
             </Link>
           ))}
         </nav>
-        <div className="flex flex-row gap-4 justify-between items-center">
           <ThemeSwitch />
 
           <Button className="hidden sm:block">Get A Quote</Button>
