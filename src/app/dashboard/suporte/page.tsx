@@ -1,7 +1,7 @@
-interface DashboardPageProps {
+interface SupportPageProps {
 }
 
-export default function DashboardPage(props: DashboardPageProps){
+export default function SupportPage(props: SupportPageProps){
  return (
   <main>
     <h1>Suporte</h1>

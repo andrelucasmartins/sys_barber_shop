@@ -1,10 +1,10 @@
-interface DashboardPageProps {
+interface SalesPageProps {
 }
 
-export default function DashboardPage(props: DashboardPageProps){
+export default function SalesPage(props: SalesPageProps){
  return (
   <main>
-    <h1>Dashboard</h1>
+    <h1>Vendas</h1>
   </main>
  );
 };

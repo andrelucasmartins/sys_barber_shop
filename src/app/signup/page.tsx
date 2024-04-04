@@ -11,7 +11,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export default function SignUpForm() {
+export default function SignUp() {
   return (
     <section className="flex justify-center items-center h-screen">
       <Card className="mx-auto max-w-lg">
