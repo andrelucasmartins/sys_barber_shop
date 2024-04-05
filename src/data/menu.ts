@@ -24,4 +24,9 @@ export const MENU = [
     title: "Contact",
     url: "#contact",
   },
+  {
+    id: 6,
+    title: "Login",
+    url: "/signin",
+  },
 ]
