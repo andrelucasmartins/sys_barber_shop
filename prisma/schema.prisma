@@ -22,20 +22,30 @@ model Company {
   address     String
   phoneNumber String
   createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
   users       User[]
+
+  @@map("company")
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  tel       String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-  profile   Profile?
-  Companie  Company? @relation(fields: [companyId], references: [id])
-  companyId Int?
-  role      Role     @default(USER)
+  id            Int      @id @default(autoincrement())
+  username      String?
+  phoneNumber   String?
+  email         String   @unique
+  password      String?
+  emailVerified String?
+  image         String?
+  // accounts      Account[]
+  // sessions      Session[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  profile       Profile?
+  Companie      Company? @relation(fields: [companyId], references: [id])
+  companyId     Int?
+  role          Role     @default(USER)
+
+  @@map("user")
 }
 
 model Profile {
@@ -43,6 +53,18 @@ model Profile {
   bio    String?
   userId Int     @unique
   user   User    @relation(fields: [userId], references: [id])
+
+  @@map("profile")
+}
+
+model Member {
+  id         Int      @id @default(autoincrement())
+  username   String
+  email      String   @unique
+  birthday   DateTime
+  occupation String   @unique
+
+  @@map("member")
 }
 
 enum Role {

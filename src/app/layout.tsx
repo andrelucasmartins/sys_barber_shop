@@ -3,7 +3,7 @@ import { Header } from "@/components/header";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { Providers } from "./providers";
+import { AuthProvider, Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,9 +21,11 @@ export default function RootLayout({
     <html lang="en" className="dark scroll-smooth">
       <body className={inter.className}>
         <Providers>
-          <Header />
-          {children}
-          <Footer />
+          <AuthProvider>
+            <Header />
+            {children}
+            <Footer />
+          </AuthProvider>
         </Providers>
       </body>
     </html>
