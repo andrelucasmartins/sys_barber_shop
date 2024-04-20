@@ -23,29 +23,32 @@ model Company {
   phoneNumber String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  users       User[]
+  user        User[]
+  member      Member[]
 
   @@map("company")
 }
 
 model User {
-  id            Int      @id @default(autoincrement())
+  id            Int             @id @default(autoincrement())
   username      String?
   phoneNumber   String?
-  email         String   @unique
+  email         String          @unique
   password      String?
   emailVerified String?
   image         String?
-  // accounts      Account[]
-  // sessions      Session[]
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  accounts      Account[]
+  sessions      Session[]
+  // Optional for WebAuthn support
+  Authenticator Authenticator[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
   profile       Profile?
-  Companie      Company? @relation(fields: [companyId], references: [id])
+  Companie      Company?        @relation(fields: [companyId], references: [id])
   companyId     Int?
-  role          Role     @default(USER)
+  role          Role            @default(USER)
 
-  @@map("user")
+  @@map("users")
 }
 
 model Profile {
@@ -54,17 +57,75 @@ model Profile {
   userId Int     @unique
   user   User    @relation(fields: [userId], references: [id])
 
-  @@map("profile")
+  @@map("profiles")
 }
 
 model Member {
   id         Int      @id @default(autoincrement())
+  companyId  Int
   username   String
   email      String   @unique
   birthday   DateTime
   occupation String   @unique
+  Companie   Company? @relation(fields: [companyId], references: [id])
 
-  @@map("member")
+  @@map("members")
+}
+
+model Account {
+  userId            String?
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique @map("session_token")
+  userId       String   @map("user_id")
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("sessions")
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verificationtokens")
+}
+
+// Optional for WebAuthn support
+model Authenticator {
+  id                   String  @id @default(cuid())
+  credentialID         String  @unique
+  userId               String
+  providerAccountId    String
+  credentialPublicKey  String
+  counter              Int
+  credentialDeviceType String
+  credentialBackedUp   Boolean
+  transports           String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 enum Role {
