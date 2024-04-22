@@ -1,9 +1,13 @@
+import { PrismaClient } from "@prisma/client";
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from 'next-auth/providers/credentials';
+
+const prisma = new PrismaClient()
 
 // import bcrypt from "bcrypt";
 
 export const authOptions: NextAuthOptions = {
+  // adapter: PrismaAdapter(prisma),
   providers: [
     // CredentialsProvider({
     //   name: "credentials",
@@ -43,22 +47,34 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials, req) {
-        const res = await fetch("/your/endpoint", {
-          method: "POST",
-          body: JSON.stringify(credentials),
-          headers: { "Content-Type": "application/json" },
-        });
-        const user = await res.json();
+        // const res = await fetch("/your/endpoint", {
+        //   method: "POST",
+        //   body: JSON.stringify(credentials),
+        //   headers: { "Content-Type": "application/json" },
+        // });
+        // const user = await res.json();
 
-        if (res.ok && user) {
-          return user;
-        }
-        if(!credentials) {
-          return null
+        // if (res.ok && user) {
+        //   return user;
+        // }
+
+        if (!credentials) {
+          return null;
         }
 
-        if(credentials.username === user.username && credentials.password === user.password) {
-          return user
+        // if(credentials.username === user.username && credentials.password === user.password) {
+        //   return user
+        // }
+
+        if (
+          credentials.username === "andre@gmail.com" &&
+          credentials.password === "123"
+        ) {
+          return {
+            id: "1",
+            name: "Andre",
+            email: "andre@gmail.com",
+          };
         }
 
         return null;
@@ -70,6 +86,7 @@ export const authOptions: NextAuthOptions = {
   },
   secret: process.env.NEXTAUTH_URL,
   pages: {
-    signIn: "/",
+    signIn: "/signin",
+    error: "/signin",
   },
 };

@@ -11,9 +11,19 @@
 npx prisma migrate dev --name init
 ```
 
+## Create migration or update database
+```bash
+yarn prisma db push
+```
+
+## Prisma generate
+```bash
+yarn prisma generate
+```
+
 ## Database search with prisma studio
 ```bash	
-npx prisma studio
+yarn prisma studio
 ```
 
 
@@ -22,13 +32,8 @@ npx prisma studio
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.

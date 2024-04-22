@@ -5,7 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
 }
 
 datasource db {
@@ -14,7 +15,9 @@ datasource db {
 }
 
 model Company {
-  id          Int      @id @default(autoincrement())
+  id          String   @id @default(cuid())
+  userId      String
+  memberId    String
   companyName String
   fantasyName String
   cnpj        Int      @unique
@@ -23,14 +26,14 @@ model Company {
   phoneNumber String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-  user        User[]
-  member      Member[]
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  member      Member   @relation(fields: [memberId], references: [id], onDelete: Cascade)
 
   @@map("company")
 }
 
 model User {
-  id            Int             @id @default(autoincrement())
+  id            String          @id @default(cuid())
   username      String?
   phoneNumber   String?
   email         String          @unique
@@ -43,37 +46,37 @@ model User {
   Authenticator Authenticator[]
   createdAt     DateTime        @default(now())
   updatedAt     DateTime        @updatedAt
-  profile       Profile?
-  Companie      Company?        @relation(fields: [companyId], references: [id])
-  companyId     Int?
-  role          Role            @default(USER)
+  profile       Profile[]
+  Companie      Company[]
+  role          UserRole        @default(USER)
 
   @@map("users")
 }
 
 model Profile {
-  id     Int     @id @default(autoincrement())
+  id     String  @id @default(cuid())
+  userId String
   bio    String?
-  userId Int     @unique
-  user   User    @relation(fields: [userId], references: [id])
+  user   User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("profiles")
 }
 
 model Member {
-  id         Int      @id @default(autoincrement())
-  companyId  Int
+  id         String    @id @default(cuid())
+  userId     String
   username   String
-  email      String   @unique
+  email      String    @unique
   birthday   DateTime
-  occupation String   @unique
-  Companie   Company? @relation(fields: [companyId], references: [id])
+  occupation String    @unique
+  Companie   Company[]
 
   @@map("members")
 }
 
 model Account {
-  userId            String?
+  id                String  @id @default(cuid())
+  userId            String
   type              String
   provider          String
   providerAccountId String
@@ -90,14 +93,13 @@ model Account {
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@id([provider, providerAccountId])
-  @@map("accounts")
+  @@unique([provider, providerAccountId])
 }
 
 model Session {
   id           String   @id @default(cuid())
-  sessionToken String   @unique @map("session_token")
-  userId       String   @map("user_id")
+  sessionToken String   @unique
+  userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -128,7 +130,7 @@ model Authenticator {
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-enum Role {
-  USER
+enum UserRole {
   ADMIN
+  USER
 }

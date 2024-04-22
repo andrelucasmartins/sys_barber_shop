@@ -1,26 +1,32 @@
+"use client"
+
 import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { signIn, useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 
 
 export default function SignIn() {
-  // async function login(e: React.FormEvent<HTMLFormElement>) {
-  //   e.preventDefault();
-  //   const formData = new FormData(e.currentTarget)
 
-  //   const data = {
-  //     email: formData.get('email'),
-  //     password: formData.get('password')
-  //   }
+  const { status } = useSession();
 
-  //   signIn('credentials', {
-  //     ...data,
-  //     callbackUrl: `/dashboard`,
-  //   })
-  // }
+  if (status === "authenticated") {
+    redirect("/");
+  }
+  async function login(formData: FormData) {
+    const rawFormData = {
+      email: formData.get('email'),
+      password: formData.get('password')
+    }
+    signIn("credentials", {
+      ...rawFormData,
+      callbackUrl: `/dashboard`,
+    });    
+  }
 
   return (
     <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
@@ -29,16 +35,14 @@ export default function SignIn() {
           <div className="grid gap-2 text-center">
             <h1 className="text-3xl font-bold">Login</h1>
             <p className="text-balance text-muted-foreground">
-              Enter your email below to login to your account
+              Digite seu e-mail abaixo para fazer login em sua conta
             </p>
           </div>
-          <form 
-          className="grid gap-4" 
-          // onSubmit={login}
-          >
+          <form className="grid gap-4" action={login}>
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
+              name="email"
                 id="email"
                 type="email"
                 placeholder="m@example.com"
@@ -47,25 +51,31 @@ export default function SignIn() {
             </div>
             <div className="grid gap-2">
               <div className="flex items-center">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password">Senha</Label>
                 <Link
                   href="/forgot-password"
                   className="ml-auto inline-block text-sm underline"
                 >
-                  Forgot your password?
+                  Esqueceu sua senha?
                 </Link>
               </div>
-              <Input id="password" type="password" required />
+              <Input
+              name="password"
+                id="password"
+                type="password"
+                required
+                placeholder="********"
+              />
             </div>
             <Button type="submit" className="w-full">
               Login
             </Button>
             <Button variant="outline" className="w-full">
-              Login with Google
+              Login com Google
             </Button>
           </form>
           <div className="mt-4 text-center text-sm">
-            Don&apos;t have an account?{" "}
+            Não tem uma conta?{" "}
             <Link href="#" className="underline">
               Sign up
             </Link>
@@ -74,7 +84,7 @@ export default function SignIn() {
       </div>
       <div className="hidden bg-muted lg:block">
         <Image
-          src="/placeholder.svg"
+          src="/ee6lnbhr.bmp"
           alt="Image"
           width="1920"
           height="1080"
