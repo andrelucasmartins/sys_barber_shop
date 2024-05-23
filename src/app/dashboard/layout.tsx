@@ -8,6 +8,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Home, LineChart, Package, Package2, PanelLeft, Search, Settings, ShoppingCart, Users2 } from "lucide-react";
 import Image from 'next/image';
 import Link from 'next/link';
+import { LuCalendar } from "react-icons/lu";
 
 export default function RootLayout({
   children,
@@ -29,7 +30,7 @@ export default function RootLayout({
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  href="#"
+                  href="/dashboard"
                   className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
                   <Home className="h-5 w-5" />
@@ -38,6 +39,20 @@ export default function RootLayout({
               </TooltipTrigger>
               <TooltipContent side="right">Dashboard</TooltipContent>
             </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link
+                  href="/dashboard/agendamentos"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                >
+                  <LuCalendar className="h-5 w-5" />
+                  <span className="sr-only">Agendamentos</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="right">Agendamentos</TooltipContent>
+            </Tooltip>
+
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
@@ -53,14 +68,14 @@ export default function RootLayout({
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  href="#"
+                  href="/dashboard/orders"
                   className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
                   <Package className="h-5 w-5" />
-                  <span className="sr-only">Products</span>
+                  <span className="sr-only">Produtos</span>
                 </Link>
               </TooltipTrigger>
-              <TooltipContent side="right">Products</TooltipContent>
+              <TooltipContent side="right">Produtos</TooltipContent>
             </Tooltip>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -134,15 +149,22 @@ export default function RootLayout({
                   href="#"
                   className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                 >
+                  <LuCalendar className="size-5" />
+                  Agendamentos
+                </Link>
+                <Link
+                  href="/dashboard/agendamentos"
+                  className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                >
                   <ShoppingCart className="h-5 w-5" />
                   Orders
                 </Link>
                 <Link
-                  href="#"
+                  href="/dashboard/produtos"
                   className="flex items-center gap-4 px-2.5 text-foreground"
                 >
                   <Package className="h-5 w-5" />
-                  Products
+                  Produtos
                 </Link>
                 <Link
                   href="#"
