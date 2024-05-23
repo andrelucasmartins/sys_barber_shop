@@ -14,20 +14,33 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Scheduling {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  phone     String
+  date      DateTime
+  createdAt DateTime @default(now())
+
+  @@map("scheduling")
+}
+
 model Company {
-  id          String   @id @default(cuid())
-  userId      String
-  memberId    String
-  companyName String
-  fantasyName String
-  cnpj        Int      @unique
-  email       String   @unique
-  address     String
-  phoneNumber String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  member      Member   @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  id           String   @id @default(cuid())
+  userId       String
+  memberId     String
+  schedulingId Int
+  companyName  String
+  fantasyName  String
+  cnpj         Int      @unique
+  email        String   @unique
+  address      String
+  phoneNumber  String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  member       Member   @relation(fields: [memberId], references: [id], onDelete: Cascade)
+  // scheduling Scheduling @relation(fields: [schedulingId], references: [id], onDelete: Cascade)
 
   @@map("company")
 }
@@ -38,7 +51,6 @@ model User {
   phoneNumber   String?
   email         String          @unique
   password      String?
-  emailVerified String?
   image         String?
   accounts      Account[]
   sessions      Session[]

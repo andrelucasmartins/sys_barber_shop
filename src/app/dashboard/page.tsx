@@ -11,7 +11,6 @@ import {
 } from "lucide-react";
 import { getServerSession } from "next-auth";
 import Link from "next/link";
-import { redirect } from "next/navigation";
 
 import { LogoutButton } from "@/components/logout-button";
 import {
@@ -56,7 +55,17 @@ export default async function DashboardPage(props: DashboardPageProps){
 
 
   if (!session) {
-    redirect("/")
+    // redirect("/")
+    return (
+    <div className="flex h-dvh w-full flex-col">
+        <h1 className="text-center text-2xl py-16">
+          Você precisa ser um administrador para acessar esta página.
+        </h1>
+        <Button className="mx-auto w-fit">
+        <LogoutButton />
+        </Button>
+      </div>
+    )
   }
 
   if(session?.user.role !== 'ADMIN') {

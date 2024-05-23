@@ -1,48 +1,20 @@
 import prisma from "@/lib/db";
-import NextAuth from "next-auth";
+import { PrismaAdapter } from "@auth/prisma-adapter";
+import NextAuth, { NextAuthOptions } from "next-auth";
+import { Adapter } from "next-auth/adapters";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-const handler = NextAuth({
+const handler: NextAuthOptions = NextAuth({
   session: {
     strategy: "jwt",
   },
-  // secret: process.env.NEXTAUTH_URL,
+  secret: process.env.NEXTAUTH_URL,
   pages: {
     signIn: "/signin",
     error: "/signin",
   },
+  adapter: PrismaAdapter(prisma) as Adapter,
   providers: [
-    // CredentialsProvider({
-    //   name: "credentials",
-    //   credentials: {},
-    //   async authorize(credentials: any) {
-    //     const { email, password } = credentials
-
-    //     try {
-    //       const user = await prisma.user.findUnique({
-    //         where: {
-    //           email
-    //         }
-    //       })
-
-    //       if(!user) {
-    //         return null;
-    //       }
-
-    //       const passwordsMath = await bcrypt.compare(password, user.password)
-
-    //       if(!passwordsMath) {
-    //         return null
-    //       }
-
-    //       return user
-
-    //     } catch (error) {
-    //       console.log("Error: ", error)
-    //       return null
-    //     }
-    //   },
-    // }),
     CredentialsProvider({
       name: "Credentials",
       credentials: {
@@ -67,27 +39,29 @@ const handler = NextAuth({
           //   return null
           // }
 
-          if(credentials?.email === user.email && credentials.password === user.password) {
-            return user
+          if (
+            credentials?.email === user.email &&
+            credentials.password === user.password
+          ) {
+            return user;
           }
 
           return null;
         } catch (error) {
-          console.log("Error: ", error)
-          return null
+          console.log("Error: ", error);
+          return null;
         }
-
       },
     }),
   ],
   callbacks: {
     async session({ token, session }) {
-      if(token) {
-        session.user.id = token.id
-        session.user.name = token.name
-        session.user.email = token.email
-        session.user.role = token.role
-        session.user.image = token.picture
+      if (token) {
+        session.user.id = token.id;
+        session.user.name = token.name;
+        session.user.email = token.email;
+        session.user.role = token.role;
+        session.user.image = token.picture;
       }
 
       return session;
@@ -95,13 +69,13 @@ const handler = NextAuth({
     async jwt({ token, user }) {
       const dbUser = await prisma.user.findUnique({
         where: {
-         email: token.email!,
-        }
-      })
+          email: token.email!,
+        },
+      });
 
-      if(!dbUser) {
-        token.id = user!.id
-        return token
+      if (!dbUser) {
+        token.id = user!.id;
+        return token;
       }
 
       return {
@@ -110,8 +84,8 @@ const handler = NextAuth({
         email: dbUser.email,
         picture: dbUser.image,
         role: dbUser.role,
-      }
-    }
+      };
+    },
   },
 });
 

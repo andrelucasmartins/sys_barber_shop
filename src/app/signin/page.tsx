@@ -3,11 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { InputIcon } from "@/components/InputIcon";
+import { SignInGoogle } from "@/components/sign-in-google";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { signIn, useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
+import { LuLock, LuMail } from "react-icons/lu";
 
 
 export default function SignIn() {
@@ -15,14 +17,15 @@ export default function SignIn() {
   const { status } = useSession();
 
   if (status === "authenticated") {
-    redirect("/");
+    redirect("/dashboard");
   }
   async function login(formData: FormData) {
     const rawFormData = {
       email: formData.get('email'),
       password: formData.get('password')
     }
-    signIn("credentials", {
+    console.log(rawFormData)
+    await signIn("credentials", {
       ...rawFormData,
       callbackUrl: `/dashboard`,
     });    
@@ -38,15 +41,17 @@ export default function SignIn() {
               Digite seu e-mail abaixo para fazer login em sua conta
             </p>
           </div>
-          <form className="grid gap-4" action={login}>
+          <form className="grid gap-4" action={login} method="post">
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
-              <Input
-              name="email"
+              <InputIcon
+                iconStart={<LuMail />}
+                name="email"
                 id="email"
                 type="email"
-                placeholder="m@example.com"
                 required
+                placeholder="m@example.com"
+                autoComplete="off"
               />
             </div>
             <div className="grid gap-2">
@@ -59,24 +64,24 @@ export default function SignIn() {
                   Esqueceu sua senha?
                 </Link>
               </div>
-              <Input
-              name="password"
+              <InputIcon
+                iconStart={<LuLock />}
+                name="password"
                 id="password"
                 type="password"
                 required
                 placeholder="********"
+                autoComplete="off"
               />
             </div>
             <Button type="submit" className="w-full">
               Login
             </Button>
-            <Button variant="outline" className="w-full">
-              Login com Google
-            </Button>
           </form>
+          <SignInGoogle />
           <div className="mt-4 text-center text-sm">
             Não tem uma conta?{" "}
-            <Link href="#" className="underline">
+            <Link href="/signup" className="underline">
               Sign up
             </Link>
           </div>
