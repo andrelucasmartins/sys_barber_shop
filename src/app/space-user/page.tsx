@@ -43,6 +43,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { intlFormat } from "date-fns";
+import { revalidateTag } from "next/cache";
 
 interface SpaceUserProps {}
 
@@ -50,9 +51,8 @@ export default async function SpaceUser(props: SpaceUserProps) {
   const session = await getServerSession(); 
 
   const data = await fetch("http://localhost:3000/api/schedule");
+  revalidateTag("schedule");
   const { schedule } = await data.json();
-
-  console.log(intlFormat(new Date(schedule[0]?.date), { locale: "pt-BR" }));
 
   if (!session) {
     // redirect("/")
@@ -64,20 +64,67 @@ export default async function SpaceUser(props: SpaceUserProps) {
 
         <Input type="email" placeholder="Onde você está?" />
         <div className="grid grid-cols-2 gap-4">
-          <ScheduleForm
-            dateInitial={schedule[0]?.date}
-          />
-          {schedule.map((scheduling: typeof schedule) => (
-            <ul key={scheduling.id}>
-              <li>Nome: {scheduling.name}</li>
-              <li>Tel: {scheduling.phone}</li>
-              <li>Email: {scheduling.email}</li>
-              <li>
-                Agendamento: <br />
-                {intlFormat(new Date(scheduling.date), { locale: "pt-BR" })}
-              </li>
-            </ul>
-          ))}
+          <ScheduleForm />
+          
+          <div className="gap-4 w-full">
+            <Card>
+              <CardHeader className="px-7">
+                <CardTitle>Agendamentos</CardTitle>
+                <CardDescription>
+                  Recent orders from your store.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Cliente</TableHead>
+                      <TableHead className="hidden sm:table-cell">
+                        Procedimento
+                      </TableHead>
+                      <TableHead className="hidden sm:table-cell">
+                        Status
+                      </TableHead>
+                      <TableHead className="hidden md:table-cell">
+                        Data
+                      </TableHead>
+                      <TableHead className="text-right">Amount</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {schedule.map((scheduling: typeof schedule) => (
+                      <TableRow key={scheduling.id}>
+                        <TableCell className="flex flex-col">
+                          <div className="font-medium">{scheduling.name}</div>
+                          <div className="hidden text-sm text-muted-foreground md:inline">
+                            {scheduling.email}
+                          </div>
+                          <div className="hidden text-sm text-muted-foreground md:inline">
+                            {scheduling.phone}
+                          </div>
+                        </TableCell>
+
+                        <TableCell className="hidden sm:table-cell">
+                          Sale
+                        </TableCell>
+                        <TableCell className="hidden sm:table-cell">
+                          <Badge className="text-xs" variant="secondary">
+                            Fulfilled
+                          </Badge>
+                        </TableCell>
+                        <TableCell className="hidden md:table-cell">
+                          {intlFormat(new Date(scheduling.date), {
+                            locale: "pt-BR",
+                          })}
+                        </TableCell>
+                        <TableCell className="text-right">$250.00</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </div>
     );

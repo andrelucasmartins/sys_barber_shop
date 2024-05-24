@@ -76,7 +76,7 @@ export const Header = (props: HeaderProps) => {
                 <SheetHeader className="flex justify-start items-start">
                   <SheetTitle>
                     {" "}
-                    <Link href="/">Sys Barber Shop</Link>
+                    <Link href="/">Salon Sys Shop</Link>
                   </SheetTitle>
                   <SheetDescription>
                     <nav className="space-y-4 flex flex-col mt-4 justify-start items-start">

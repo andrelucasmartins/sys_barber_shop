@@ -1,6 +1,10 @@
 "use client"
 // components/ScheduleForm.js
+import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
+import { ToastAction } from "@/components/ui/toast";
+import { useToast } from "@/components/ui/use-toast";
+import { formatPhone } from "@/core/formatPhone";
 import { ptBR } from "date-fns/locale";
 import { useEffect, useState } from "react";
 import { LuCalendar } from 'react-icons/lu';
@@ -16,6 +20,8 @@ const ScheduleForm = ({ dateInitial }: ScheduleFormProps) => {
    const [date, setDate] = useState<Date | undefined >(new Date());
   const [phone, setPhone] = useState("");
 
+  const { toast } = useToast();
+
   useEffect(() => {
     if (dateInitial) {
       setDate(dateInitial);
@@ -24,19 +30,36 @@ const ScheduleForm = ({ dateInitial }: ScheduleFormProps) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    await fetch("/api/schedule", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ name, email, date, phone }),
-    });
+    try {
+      await fetch("/api/schedule", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ name, email, date, phone }),
+        next: { tags: ["schedule"] },
+      });
+
+      toast({
+        title: "Agendamento realizado com sucesso!",
+        description: "Friday, February 10, 2023 at 5:57 PM",
+        action: (
+          <ToastAction altText="desmarcar agendamento">
+            desmarcar agendamento
+          </ToastAction>
+        ),
+      });
+
+    } catch (error) {
+      
+    }
+    
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 mx-auto">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
+        <div className="flex flex-col space-y-4">
           <div>
             <label className="block">Nome</label>
             <Input
@@ -65,17 +88,19 @@ const ScheduleForm = ({ dateInitial }: ScheduleFormProps) => {
             <Input
               type="tel"
               value={phone}
-              onChange={(e) => setPhone(e.target.value)}
+              onChange={(e) => setPhone(formatPhone(e.target.value) || e.target.value)}
               className="w-full px-4 py-2 border rounded-md"
+              placeholder="(00) 00000-0000"
               required
             />
           </div>
-          <button
+          
+          <Button
             type="submit"
-            className="px-4 py-2 bg-blue-500 text-white rounded-md"
+            className="px-4 py-2 "
           >
-            Schedule
-          </button>
+            Agendar
+          </Button>
         </div>
         <div>
           <label className="inline-flex items-center gap-2 mx-auto">
