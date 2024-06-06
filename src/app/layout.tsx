@@ -1,5 +1,5 @@
 import { Footer } from "@/components/footer";
-import { Header } from "@/components/header";
+import { Toaster } from "@/components/ui/sonner";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
@@ -8,8 +8,9 @@ import { AuthProvider, Providers } from "./providers";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Sys Barber Shop",
-  description: "System manager your customers in unique area and schedule with Sys Barber Shop",
+  title: "Salon Sys Shop",
+  description:
+    "Sistema gerenciador de clientes em área e agendamento exclusivos com Salon Sys Shop",
 };
 
 export default function RootLayout({
@@ -22,11 +23,12 @@ export default function RootLayout({
       <body className={inter.className}>
         <Providers>
           <AuthProvider>
-            <Header />
+            
             {children}
             <Footer />
           </AuthProvider>
         </Providers>
+        <Toaster />
       </body>
     </html>
   );

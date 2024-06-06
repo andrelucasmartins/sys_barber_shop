@@ -47,26 +47,30 @@ export const Header = (props: HeaderProps) => {
       })}
     >
       <div className="container max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-primary">Sys Barber Shop</h1>
+        <h1 className="text-3xl font-bold text-primary">
+          <Link href="/">Salon Sys Shop</Link>
+        </h1>
         <div className="flex flex-row gap-4 justify-between items-center">
-        <nav className="space-x-4 hidden lg:block">
-          {MENU.map((item) => (
-            <Link
-              className={
-                pathname === item.url
-                  ? "text-gray-600 hover:text-opacity-75"
-                  : "text-gray-400 hover:text-opacity-75"
-              }
-              href={item.url}
-              key={item.id}
-            >
-              {item.title}
-            </Link>
-          ))}
-        </nav>
+          <nav className="space-x-4 hidden lg:block">
+            {MENU.map((item) => (
+              <Link
+                className={
+                  pathname === item.url
+                    ? "text-gray-600 hover:text-opacity-75"
+                    : "text-gray-400 hover:text-opacity-75"
+                }
+                href={item.url}
+                key={item.id}
+              >
+                {item.title}
+              </Link>
+            ))}
+          </nav>
           <ThemeSwitch />
 
-          <Button className="hidden sm:block">Get A Quote</Button>
+          <Button className="hidden sm:block" asChild>
+            <Link href="/signin">Login</Link>
+          </Button>
           <div className="visible lg:hidden">
             <Sheet>
               <SheetTrigger>

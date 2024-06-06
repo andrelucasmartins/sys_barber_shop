@@ -12,7 +12,7 @@ interface FooterProps {}
 
 export function Footer(props: FooterProps) {
   return (
-    <footer className="bg-foreground text-muted  scroll-mt-10" id="contact">
+    <footer className="bg-foreground text-muted sticky" id="contact">
       <div className="bg-background text-secondary-foreground px-4">
         <div className="grid grid-flow-row auto-rows-max sm:grid-flow-col sm:auto-cols-max justify-center  sm:justify-between items-center py-4 max-w-7xl md:mx-auto ">
           <p className="text-center mt-4 md:self-end">

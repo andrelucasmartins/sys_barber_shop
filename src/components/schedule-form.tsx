@@ -2,19 +2,19 @@
 // components/ScheduleForm.js
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
-import { ToastAction } from "@/components/ui/toast";
-import { useToast } from "@/components/ui/use-toast";
 import { formatPhone } from "@/core/formatPhone";
+import { ToastAction } from "@radix-ui/react-toast";
 import { ptBR } from "date-fns/locale";
 import { useEffect, useState } from "react";
 import { LuCalendar } from 'react-icons/lu';
 import { Input } from "./ui/input";
+import { useToast } from "./ui/use-toast";
 
 interface ScheduleFormProps  {
   dateInitial?: Date
 }
 
-const ScheduleForm = ({ dateInitial }: ScheduleFormProps) => {
+export const ScheduleForm = ({ dateInitial }: ScheduleFormProps) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
    const [date, setDate] = useState<Date | undefined >(new Date());
@@ -113,8 +113,7 @@ const ScheduleForm = ({ dateInitial }: ScheduleFormProps) => {
             selected={date}
             onSelect={setDate}
             className={`rounded-md border`}
-            disabled={(date) =>
-              date < new Date() || date < new Date(`${dateInitial}`)
+            disabled={{ dayOfWeek: [0]}
             }
             initialFocus
           />
@@ -124,4 +123,3 @@ const ScheduleForm = ({ dateInitial }: ScheduleFormProps) => {
   );
 };
 
-export default ScheduleForm;

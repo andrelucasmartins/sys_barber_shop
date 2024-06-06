@@ -6,27 +6,17 @@ export const MENU = [
   },
   {
     id: 2,
-    title: "About",
-    url: "#about",
-  },
-  {
-    id: 3,
-    title: "Gallery",
-    url: "/gallery",
+    title: "Sobre",
+    url: "/about",
   },
   {
     id: 4,
-    title: "Partner Program",
+    title: "Programa de parceria",
     url: '/partner-program'
   },
   {
     id: 5,
-    title: "Contact",
+    title: "Contato",
     url: "#contact",
-  },
-  {
-    id: 6,
-    title: "Login",
-    url: "/signin",
   },
 ]
