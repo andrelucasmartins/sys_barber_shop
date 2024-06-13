@@ -50,7 +50,7 @@ export function Footer(props: FooterProps) {
       </div>
       <Link
         type="button"
-        className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-full text-sm p-4 text-center  mb-2 fixed bottom-2 right-6"
+        className="text-white bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 font-medium rounded-full text-sm p-4 text-center  mb-2 fixed bottom-2 right-6 sr-only"
         href="https://api.whatsapp.com/send?phone=5519993028888&text=Olá, sou André, gostaria de saber mais sobre o sistema Sys Baber Shop?"
       >
         <span className="sr-only">Whatsapp</span>

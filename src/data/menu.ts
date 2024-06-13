@@ -7,7 +7,7 @@ export const MENU = [
   {
     id: 2,
     title: "Sobre",
-    url: "/about",
+    url: "#about",
   },
   {
     id: 4,

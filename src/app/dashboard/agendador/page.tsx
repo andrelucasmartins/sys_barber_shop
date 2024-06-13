@@ -165,7 +165,7 @@ export default async function SpaceUser(props: SpaceUserProps) {
           </Card>
           <div className="grid grid-cols-8 gap-4 ">
             {HOURS.map((item) => (
-              <Button className="w-full" key={item}>
+              <Button className="w-full" variant="outline" key={item}>
                 {item}
               </Button>
             ))}
